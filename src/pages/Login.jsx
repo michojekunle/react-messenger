@@ -46,6 +46,7 @@ const Register = () => {
                 loading: false
             })
             navigate('/');
+            
         } catch (error) {
             setData({ ...data, error: error.message, loading: false });
         }
