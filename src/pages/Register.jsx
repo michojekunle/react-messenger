@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
-import { setDoc, doc } from 'firebase/firestore'
+import { auth, db } from '../firebase';
+import { setDoc, doc, Timestamp } from 'firebase/firestore'
 
 
 const Register = () => {
@@ -21,6 +21,7 @@ const Register = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        setData({...data, error: null, loading: true});
 
         if(!name || !password || !email) {
             setData({...data, error: "All fields Are required!"})
@@ -28,10 +29,23 @@ const Register = () => {
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
             console.log(result.user);
-            console.log(data);
+            setDoc(doc(db, 'users', result.user.uid), {
+                uid: result.user.uid,
+                name,
+                email,
+                createdAt: Timestamp.fromDate(new Date()),
+                isOnline: true
+            });
+            setData({
+                name: '',
+                email: '',
+                password: '',
+                error: null,
+                loading: false
+            })
 
         } catch (error) {
-            console.log(error);
+            setData({ ...data, error: error.message, loading: false });
         }
     }
   return (
@@ -54,7 +68,7 @@ const Register = () => {
                 {error ? <p className='error'>{error}</p>: ''}
                 <div className="buttons">
                     <button type="reset">Clear</button>
-                    <button type="submit">Register</button>
+                    <button type="submit" disabled={loading}>Register</button>
                 </div>
             </form>
         </section>
