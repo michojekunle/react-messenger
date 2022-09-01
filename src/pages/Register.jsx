@@ -70,7 +70,7 @@ const Register = () => {
                 {error ? <p className='error'>{error}</p>: ''}
                 <div className="buttons">
                     <button type="reset">Clear</button>
-                    <button type="submit" disabled={loading}>Register</button>
+                    <button type="submit" disabled={loading}>{loading? 'Creating...': 'Register'}</button>
                 </div>
             </form>
         </section>

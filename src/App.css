@@ -106,15 +106,15 @@ form {
 }
 
 
-button:nth-child(1){
+.buttons button:nth-child(1){
   background-color: var(--color-2);
 }
 
-button:nth-child(2){
+.buttons button:nth-child(2){
   background-color: var(--color-1);
 }
 
-button:hover, button:focus {
+.buttons button:hover, .buttons button:focus {
   transform: scale(1.1);
 }
 
