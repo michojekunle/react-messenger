@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
-// import { AuthContext } from '../context/auth';
+import { AuthContext } from '../context/auth';
 
 
 const Navbar = () => {
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
   const handleSignOut = async () => {
     await updateDoc(doc(db, 'users', auth.currentUser.uid), {isOnline: false});
     await signOut(auth);
@@ -18,7 +19,7 @@ const Navbar = () => {
       <div>
 
       {
-        auth.currentUser ? 
+        user ? 
         <>
           <Link to='/profile'>Profile</Link>
           <button onClick={handleSignOut} style={{background: "transparent", border: "2px solid #fc0", padding: "6px 20px", borderRadius: "6px",cursor: "pointer", color: "#fff", fontSize: "14px" }}>Log out</button>

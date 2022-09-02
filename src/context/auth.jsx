@@ -4,7 +4,7 @@ import { auth } from '../firebase';
 
 export const AuthContext = createContext();
 
-const AuthProvider =  ({chlidren}) => {
+const AuthProvider =  (props) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const AuthProvider =  ({chlidren}) => {
 
     }, []);
     
-    return <AuthContext.Provider value={user}>{chlidren}</AuthContext.Provider>
+    return <AuthContext.Provider value={{user}}>{props.chlidren}</AuthContext.Provider>
 }
 
 export default AuthProvider;
