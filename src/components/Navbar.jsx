@@ -6,8 +6,10 @@ import { updateDoc, doc } from 'firebase/firestore';
 import { AuthContext } from '../context/auth';
 
 
+
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  alert(user);
 
   const handleSignOut = async () => {
     await updateDoc(doc(db, 'users', auth.currentUser.uid), {isOnline: false});

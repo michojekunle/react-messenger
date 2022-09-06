@@ -14,10 +14,6 @@ const AuthProvider =  (props) => {
             setLoading(false);
         });
 
-        if(loading) {
-            return 'Loading';
-        }
-
     }, []);
     
     return <AuthContext.Provider value={{user}}>{props.chlidren}</AuthContext.Provider>
