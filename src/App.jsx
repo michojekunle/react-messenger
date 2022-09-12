@@ -8,16 +8,16 @@ import AuthProvider from './context/auth';
 
 function App() {
   return (
-    <AuthProvider>
       <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path = "/" element={<Home/>} />  
-          <Route path = "/register" element={<Register/>} />  
-          <Route path = "/login" element={<Login/>} />  
-        </Routes>
+        <AuthProvider>
+          <Navbar/>
+          <Routes>
+            <Route path = "/" element={<Home/>} />  
+            <Route path = "/register" element={<Register/>} />  
+            <Route path = "/login" element={<Login/>} />  
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
-    </AuthProvider>
   );
 }
 

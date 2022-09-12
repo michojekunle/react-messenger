@@ -8,7 +8,7 @@ import { AuthContext } from '../context/auth';
 
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const user = useContext(AuthContext);
   alert(user);
 
   const handleSignOut = async () => {
