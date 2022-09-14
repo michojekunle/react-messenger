@@ -16,7 +16,7 @@ const AuthProvider =  (props) => {
 
     }, []);
     
-    return (<AuthContext.Provider value={user}>{props.chlidren}</AuthContext.Provider>)
+    return (<AuthContext.Provider value={user}> {props.chlidren} </AuthContext.Provider>)
 }
 
 export default AuthProvider;
